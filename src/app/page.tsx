@@ -1,4 +1,4 @@
-import BlogLayout from "./BlogLayout";
+import BlogLayout from "@/components/BlogLayout";
 
 const intro = `Welcome to the Next.js Workshop Guide! Here you'll find in-depth articles and hands-on examples to master modern web development with Next.js.`;
 
