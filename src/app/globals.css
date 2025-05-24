@@ -3,8 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #121214;
+  --primary: #50a2ff;
+  --text: #ffffff;
+  --yellow: #ffb900;
+  --green: #05df72;
+  --red: #ff6467;
+  --pink: #c27aff;
+  --font-sans: 'Google Sans Text', Arial, Helvetica, sans-serif;
+  --font-mono: 'Google Sans Mono', 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,7 +22,22 @@
 }
 
 body {
-  color: var(--foreground);
+  color: var(--text);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
+
+h1 {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font: 600 2.25rem/2.5rem var(--font-mono);
+  color: var(--yellow)
+}
+
+.text-primary { color: var(--primary); }
+.text-secondary { color: var(--text); }
+.bg-primary { background-color: var(--primary); }
+.text-yellow { color: var(--yellow); }
+.text-green { color: var(--green); }
+.text-red { color: var(--red); }
+.text-pink { color: var(--pink); }
