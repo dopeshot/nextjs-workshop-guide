@@ -6,7 +6,7 @@ import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import remarkGfm from 'remark-gfm';
 
-const contentDir = path.join(process.cwd(), 'content');
+const contentDir = path.join(process.cwd(), 'src/content');
 
 type TOCEntry = {
   value: string;
@@ -43,7 +43,7 @@ export async function getPostBySlug(slug: string) {
   const source = fs.readFileSync(fullPath, 'utf8');
   const { content, data } = matter(source);
 
-  const toc = await extractTOC(content); // ✅ Await the async TOC
+  const toc = await extractTOC(content);
 
   const mdxSource = await serialize(content, {
     mdxOptions: {
