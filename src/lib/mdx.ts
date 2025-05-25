@@ -8,13 +8,7 @@ import remarkGfm from 'remark-gfm';
 
 const contentDir = path.join(process.cwd(), 'src/content');
 
-type TOCEntry = {
-  value: string;
-  id: string;
-  depth: number;
-};
-
-async function extractTOC(markdown: string): Promise<{ label: string; href: string }[]> {
+export async function extractTOC(markdown: string): Promise<{ label: string; href: string }[]> {
   const toc: { label: string; href: string }[] = [];
 
   const unified = (await import('unified')).unified;
@@ -39,7 +33,7 @@ async function extractTOC(markdown: string): Promise<{ label: string; href: stri
 
 
 export async function getPostBySlug(slug: string) {
-  const fullPath = path.join(contentDir, `${slug}.mdx`);
+  const fullPath = slug != "home" ? path.join(contentDir, `${slug}.mdx`) : path.join(process.cwd(), 'src/app/home.mdx');
   const source = fs.readFileSync(fullPath, 'utf8');
   const { content, data } = matter(source);
 
@@ -55,7 +49,6 @@ export async function getPostBySlug(slug: string) {
 
   return {
     slug,
-    frontMatter: data,
     mdxSource,
     toc,
   };
@@ -68,7 +61,6 @@ export async function getAllPosts() : Promise<
 
   return await Promise.all(
     filenames.map(async (filename) => {
-      const filePath = path.join(contentDir, filename);
       const { default: Content, meta } = await import(`@/content/${filename}`);
       return {
         slug: filename.replace(/\.mdx$/, ''),

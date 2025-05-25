@@ -3,6 +3,7 @@ import BlogLayout from "@/components/BlogLayout";
 import Footer from "../footer";
 
 export async function generateStaticParams() {
+  // This already also has the content etc. in it so maybe everything below is redundant but w/e
   const posts = await getAllPosts();
   return posts.map((post) => ({ slug: post.slug }));
 }
