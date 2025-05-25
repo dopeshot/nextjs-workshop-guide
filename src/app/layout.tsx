@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import Footer from "./footer";
 
 export const metadata: Metadata = {
   title: "Next.js Workshop Guide",
@@ -20,7 +19,6 @@ export default function RootLayout({
         <div className="flex flex-col items-center min-h-screen">
           {children}
         </div>
-        <Footer />
       </body>
     </html>
   );

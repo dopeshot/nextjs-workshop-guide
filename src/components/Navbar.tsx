@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getAllPosts } from "@/lib/mdx";
 
 export default async function Navbar() {
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
 
   const pages = [
     { name: "Home", path: "/" },

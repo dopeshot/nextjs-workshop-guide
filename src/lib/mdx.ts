@@ -62,17 +62,18 @@ export async function getPostBySlug(slug: string) {
 }
 
 
-export function getAllPosts() {
+export async function getAllPosts() : Promise<
+  { slug: string; title: string; description: string; index: number }[]> {
   const filenames = fs.readdirSync(contentDir);
 
-  return filenames.map((filename) => {
-    const filePath = path.join(contentDir, filename);
-    const fileContents = fs.readFileSync(filePath, 'utf8');
-    const { data } = matter(fileContents);
-
-    return {
-      slug: filename.replace(/\.mdx$/, ''),
-      ...data,
-    };
-  }).sort((a, b) => a.index - b.index);
+  return await Promise.all(
+    filenames.map(async (filename) => {
+      const filePath = path.join(contentDir, filename);
+      const { default: Content, meta } = await import(`@/content/${filename}`);
+      return {
+        slug: filename.replace(/\.mdx$/, ''),
+        ...meta,
+      };
+    })
+  ).then(posts => posts.sort((a, b) => a.index - b.index));
 }
