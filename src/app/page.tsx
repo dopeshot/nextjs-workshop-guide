@@ -1,5 +1,5 @@
 import BlogLayout from "@/components/BlogLayout";
-import Footer from "./footer";
+import Footer from "@/components/Footer";
 import { getPostBySlug } from "@/lib/mdx";
 
 export default async function Home() {

@@ -1,6 +1,6 @@
 import { getAllPosts, getPostBySlug } from "@/lib/mdx";
 import BlogLayout from "@/components/BlogLayout";
-import Footer from "../footer";
+import Footer from "@/components/Footer";
 
 export async function generateStaticParams() {
   //! This already also has the content etc. in it so maybe everything below is redundant but w/e
