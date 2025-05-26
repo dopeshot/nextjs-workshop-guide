@@ -5,7 +5,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 const withMDX = createMDX({
    extension: /\.(md|mdx)$/,
-  options: {
+   options: {
     rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
   },
 })
@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   output: 'export',
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
+  basePath: process.env.PAGES_BASE_PATH,
 };
 
 export default withMDX(nextConfig)
